@@ -1,4 +1,4 @@
-name: Run tests
+name: Test topologic sort for graph
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
       run: |
         echo "${{ github.event.inputs.graph_string }}" > src/graph_data.txt
 
-    - name: Run tests
+    - name: Test topologic sort for graph
       run: |
         set -e
         python src/test_graph.py --file src/graph_data.txt
