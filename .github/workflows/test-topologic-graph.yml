@@ -10,7 +10,7 @@ on:
         default: 'A->B;A->C;B->D;C->D'
 
 jobs:
-  test:
+  test_topologic_sort:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,5 +35,4 @@ jobs:
 
     - name: Test topologic sort for graph
       run: |
-        set -e
         python src/test_graph.py --file src/graph_data.txt
