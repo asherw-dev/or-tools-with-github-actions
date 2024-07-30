@@ -8,7 +8,8 @@ __pycache__/
 
 # IDE or editor files
 .vscode/
-.idea/
+/.idea/*
+!/.idea/runConfigurations
 
 # OS-specific files
 .DS_Store
