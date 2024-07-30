@@ -5,7 +5,6 @@ from topological_sort import validate_topological_sort, find_topological_sort
 
 # Define the test case
 class TestGraphFunctions(unittest.TestCase):
-
     def test_topological_sort(self):
         # Initialize Graph from the file data
         if hasattr(self, 'test_file'):
@@ -39,4 +38,4 @@ if __name__ == '__main__':
     # Set the file argument for the test case
     TestGraphFunctions.test_file = args.file
 
-    unittest.main(argv=['first-arg-is-ignored'], exit=False)
+    unittest.main(argv=['first-arg-is-ignored'])
