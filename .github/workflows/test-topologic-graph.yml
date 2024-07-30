@@ -1,4 +1,4 @@
-name: Test topologic sort for graph
+name: Test Topological Sort for Graph
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
         default: 'A->B;A->C;B->D;C->D'
 
 jobs:
-  test_topologic_sort:
+  test_topological_sort:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +33,6 @@ jobs:
       run: |
         echo "${{ github.event.inputs.graph_string }}" > src/graph_data.txt
 
-    - name: Test topologic sort for graph
+    - name: Test topological sort for graph
       run: |
         python src/test_graph.py --file src/graph_data.txt
