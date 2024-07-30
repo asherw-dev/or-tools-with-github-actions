@@ -4,12 +4,10 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      num1:
-        description: 'First number'
+      graph_string:
+        description: 'Graph string in the format: source->target;source2->target2'
         required: true
-      num2:
-        description: 'Second number'
-        required: true
+        default: 'A->B;A->C;B->D;C->D'
 
 jobs:
   test:
@@ -29,20 +27,11 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Check for numbers.txt
-      id: check_numbers_txt
+    - name: Create graph data file from manual input
+      if: github.event_name == 'workflow_dispatch'
       run: |
-        if [ -f src/numbers.txt ]; then
-          echo "::set-output name=numbers_file_exists::true"
-        else
-          echo "::set-output name=numbers_file_exists::false"
-        fi
-
-    - name: Create numbers.txt from manual input
-      if: steps.check_numbers_txt.outputs.numbers_file_exists == 'false'
-      run: |
-        echo "${{ github.event.inputs.num1 }} ${{ github.event.inputs.num2 }}" > src/numbers.txt
+        echo "${{ github.event.inputs.graph_string }}" > src/graph_data.txt
 
     - name: Run tests
       run: |
-        python src/test.py --file src/numbers.txt
+        python src/test_graph.py --file src/graph_data.txt
